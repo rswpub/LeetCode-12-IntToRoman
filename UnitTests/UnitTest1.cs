@@ -28,7 +28,7 @@ namespace UnitTests
         [InlineData(21, "XXI")]
         [InlineData(32, "XXXII")]
         [InlineData(43, "XLIII")]
-        [InlineData(54, "LIIII")]
+        [InlineData(54, "LIV")]
         [InlineData(65, "LXV")]
         [InlineData(76, "LXXVI")]
         [InlineData(87, "LXXXVII")]

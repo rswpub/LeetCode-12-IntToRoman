@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            string result = new Solution().IntToRoman(1);
         }
     }
 
@@ -34,10 +35,155 @@
             // First check constraints
             CheckConstraints(num);
 
-            string roman = string.Empty;
+            string romanStr = string.Empty;
 
+            // Convert the integer to a string so we can process it more easily, digit by digit, starting from
+            // the most significant (largest) digit at the left.
+            string numStr = num.ToString();
+            int tensPosition = 1;
 
-            return roman;
+            for (int i = numStr.Length - 1; i >= 0; i--, tensPosition++)
+            {
+                string romanDigit = IntToRomanDigit(numStr[i], tensPosition);
+                romanStr = romanDigit + romanStr;
+            }
+
+            return romanStr;
+        }
+
+        private string IntToRomanDigit(char digit, int tensPosition)
+        {
+            switch (digit)
+            {
+                case '0':
+                    return "";
+                case '1':
+                    {
+                        switch (tensPosition)
+                        {
+                            case 1:
+                                return "I";
+                            case 2:
+                                return "X";
+                            case 3:
+                                return "C";
+                            case 4:
+                                return "M";
+                            default:
+                                throw new Exception($"Error - unexpected {nameof(tensPosition)} value ({tensPosition}) (202207201834)");
+                        }
+                    }
+                case '2':
+                    {
+                        switch (tensPosition)
+                        {
+                            case 1:
+                                return "II";
+                            case 2:
+                                return "XX";
+                            case 3:
+                                return "CC";
+                            case 4:
+                                return "MM";
+                            default:
+                                throw new Exception($"Error - unexpected {nameof(tensPosition)} value ({tensPosition}) (202207201834)");
+                        }
+                    }
+                case '3':
+                    {
+                        switch (tensPosition)
+                        {
+                            case 1:
+                                return "III";
+                            case 2:
+                                return "XXX";
+                            case 3:
+                                return "CCC";
+                            case 4:
+                                return "MMM";
+                            default:
+                                throw new Exception($"Error - unexpected {nameof(tensPosition)} value ({tensPosition}) (202207201834)");
+                        }
+                    }
+                case '4':
+                    {
+                        switch (tensPosition)
+                        {
+                            case 1:
+                                return "IV";
+                            case 2:
+                                return "XL";
+                            case 3:
+                                return "CD";
+                            default:
+                                throw new Exception($"Error - unexpected {nameof(tensPosition)} value ({tensPosition}) (202207201834)");
+                        }
+                    }
+                case '5':
+                    {
+                        switch (tensPosition)
+                        {
+                            case 1:
+                                return "V";
+                            case 2:
+                                return "L";
+                            case 3:
+                                return "D";
+                            default:
+                                throw new Exception($"Error - unexpected {nameof(tensPosition)} value ({tensPosition}) (202207201834)");
+                        }
+                    }
+                case '6':
+                    switch (tensPosition)
+                    {
+                        case 1:
+                            return "VI";
+                        case 2:
+                            return "LX";
+                        case 3:
+                            return "DC";
+                        default:
+                            throw new Exception($"Error - unexpected {nameof(tensPosition)} value ({tensPosition}) (202207201834)");
+                    }
+                case '7':
+                    switch (tensPosition)
+                    {
+                        case 1:
+                            return "VII";
+                        case 2:
+                            return "LXX";
+                        case 3:
+                            return "DCC";
+                        default:
+                            throw new Exception($"Error - unexpected {nameof(tensPosition)} value ({tensPosition}) (202207201834)");
+                    }
+                case '8':
+                    switch (tensPosition)
+                    {
+                        case 1:
+                            return "VIII";
+                        case 2:
+                            return "LXXX";
+                        case 3:
+                            return "DCCC";
+                        default:
+                            throw new Exception($"Error - unexpected {nameof(tensPosition)} value ({tensPosition}) (202207201834)");
+                    }
+                case '9':
+                    switch (tensPosition)
+                    {
+                        case 1:
+                            return "IX";
+                        case 2:
+                            return "XC";
+                        case 3:
+                            return "CM";
+                        default:
+                            throw new Exception($"Error - unexpected {nameof(tensPosition)} value ({tensPosition}) (202207201834)");
+                    }
+                default:
+                    throw new Exception($"Error - unexpected character ({digit}) (202207141224)");
+            }
         }
 
         private void CheckConstraints(int num)
